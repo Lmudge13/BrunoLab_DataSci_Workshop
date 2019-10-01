@@ -1,6 +1,6 @@
 ---
 title: "Practice"
-author: "lkm"
+author: "Laura Mudge"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
@@ -12,8 +12,19 @@ editor_options:
   chunk_output_type: console
 ---
 # Setup and Description
-In this markdown file, we will practice our data cleaning skills using the `tidyverse` (and a few other) packages. The following code outlines how to read in a .csv file from a github repository link and some examples on how we can make some summary calculations.
+In this markdown file, we will practice our data cleaning skills using the `tidyverse` (and a few other) packages. The following code outlines how to read in a .csv file from a github repository link and some examples on how we can make some summary calculations. There are a lot of tips in here for how to style your R markdown report, but the link below is the definitive guide (literally). </br> </br>
 
+[The Definitive Guide to R Markdown](https://bookdown.org/yihui/rmarkdown/)
+
+## YAML
+the YAML is the headings we see above in the first 13 lines. It will generally/automatically include the title, author, date and output but I've added some other things that are useful </br> </br>
+* __toc__ = table of contents; with `true`, a toc will show up on the left hand side of the output  
+* __toc_float__ = this will allow the toc to float up and down the html output as users scroll down  
+* __df_print__ = how tables will be printed in the output, we are using a special packaged called `kable` so I selected that option   
+* __code_folding__ =  hide will hide (but keep accessible) the code unless the reader clicks on the code button in the output
+
+## Libraries
+It's good practice to have a separate chunk that loads ANY library you will use in this document. 
 ```{r setup, results='hide', message=FALSE}
 knitr::opts_chunk$set(echo = TRUE) # will automatically include code in the ouput unless we state otherwise
 knitr::opts_chunk$set(warning= FALSE) # will NOT include warning messages in the output unless we state otherwise
