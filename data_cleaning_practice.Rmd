@@ -1,5 +1,5 @@
 ---
-title: "Practice"
+title: "Bruno Lab DataSci Workshop: Data Cleaning"
 author: "Laura Mudge"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -29,6 +29,9 @@ It's good practice to have a separate chunk that loads ANY library you will use 
 knitr::opts_chunk$set(echo = TRUE) # will automatically include code in the ouput unless we state otherwise
 knitr::opts_chunk$set(warning= FALSE) # will NOT include warning messages in the output unless we state otherwise
 # knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE) #keeps code wrapped in the output
+
+# if you haven't installed these packages run the following line (first delete the # sign):
+#install.packages(c("tidyverse", "janitor", "kableExtra", "cowplot", "skimr", "measurements"))
 
 library(tidyverse) #data wrangling & cleaning incl. ggplot
 library(janitor) # more data cleaning functions
