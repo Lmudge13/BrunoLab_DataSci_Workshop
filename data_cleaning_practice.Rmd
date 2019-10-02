@@ -62,7 +62,7 @@ data <- readr::read_csv("https://raw.githubusercontent.com/Lmudge13/sample_code/
 </br></br>
 
 __Review data structure & clean column names__
-```{r data_review}
+```{r data_review, eval=FALSE}
 # review variables and class types
 str(data)
 
@@ -112,26 +112,28 @@ data[1:20,] %>% distinct(reef_id, date, substrate_code)
 
 # use filter to pick specific rows (or types of rows) you want to keep
 data[1:20, ] %>% 
-  select(reef_id, date, substrate_code, total) %>%
+  select(reef_id, date, substrate_code, segment_code, total) %>%
   filter(substrate_code == "HC")
 
 # use mutate to create a new column - via calucation
 data[1:20, ] %>% 
-  select(reef_id, date, substrate_code, total) %>%
+  select(reef_id, date, substrate_code, segment_code, total) %>%
   filter(substrate_code == "HC") %>%
   mutate(sum_points = sum(total))
 
 # use mutate to create a new column - via adding information
 data[1:20, ] %>% 
-  select(reef_id, date, substrate_code, total) %>%
+  select(reef_id, date, substrate_code, segment_code, total) %>%
   filter(substrate_code == "HC") %>%
   mutate(sum_points = sum(total),
          data_source = "Reef Check")
 
-# use arrange to change the order of how variables appear in the column
+# use arrange to change the order of how variables appear in the column (ie alphabetical or numerical order)
 data[1:20, ] %>% 
-  select(reef_id, date, substrate_code, total) %>%
-  arrange(substrate_code)
+  select(reef_id, date, substrate_code, segment_code, total) %>%
+  arrange(substrate_code, total)
+
+
 ```
 
 *****
@@ -204,6 +206,17 @@ dupes <- data_site_average %>%
   janitor::get_dupes(reef_id, date)
   # should get this message in console: No duplicate combinations found of: reef_id, date
 
+
+# Example of lots of duplicates:
+lots_dupes <- data_by_survey %>%
+  group_by(reef_id, date) %>%
+  mutate(coral = round(mean(perc_survey), 2),
+         coral_std = round(sd(perc_survey), 2),
+         depth_m = round(mean(depth), 2),
+         n_surveys= length(unique(perc_survey))) %>%
+  ungroup() 
+dupes2 <- lots_dupes %>%
+  janitor::get_dupes(reef_id, date)
 
 ```
 
@@ -344,5 +357,4 @@ data_tidy[1:10,] %>%
   kableExtra::kable(caption="Coral and Macroalgae % Cover from Caribbean Reef Check Surveys") %>%
   kable_styling(bootstrap_options = "condensed", full_width=F)
 ```
-
 
