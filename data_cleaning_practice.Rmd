@@ -39,6 +39,7 @@ library(kableExtra) # making pretty tables
 library(cowplot) # making publication quality figures or multi-panel figures
 library(skimr) # tool to get quick overview of dataset
 library(measurements) # useful to convert units
+
 ```
 
 
@@ -321,12 +322,12 @@ str(data_tidy)
 
 
 __Save your new tidy dataframe into a csv file!__
-```{r save_tidy_data, eval= FALSE}
+```{r save_tidy_data}
 # It is highly recommended you save your tidy data as a .csv file for future use:
 
 # the structure looks like this: write_csv(<name of data frame>, "<file path">)
 
-write_csv(data_tidy, "C:/github/reefcheck_tidy.csv")
+#write_csv(data_tidy, "C:/github/reefcheck_tidy.csv")
 
 # make sure to commit and push this when you are done!
 ```
