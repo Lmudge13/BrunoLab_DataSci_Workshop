@@ -321,12 +321,12 @@ str(data_tidy)
 
 
 __Save your new tidy dataframe into a csv file!__
-```{r save_tidy_data}
+```{r save_tidy_data, eval= FALSE}
 # It is highly recommended you save your tidy data as a .csv file for future use:
 
 # the structure looks like this: write_csv(<name of data frame>, "<file path">)
 
-#write_csv(data_tidy, "C:/github/reefcheck_tidy.csv")
+write_csv(data_tidy, "C:/github/reefcheck_tidy.csv")
 
 # make sure to commit and push this when you are done!
 ```
