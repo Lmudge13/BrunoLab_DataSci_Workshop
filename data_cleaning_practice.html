@@ -1586,7 +1586,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Bruno Lab DataSci Workshop: Data Cleaning</h1>
 <h4 class="author">Laura Mudge</h4>
-<h4 class="date">02 October, 2019</h4>
+<h4 class="date">03 October, 2019</h4>
 
 </div>
 
@@ -2889,7 +2889,7 @@ SC
 
 # use filter to pick specific rows (or types of rows) you want to keep
 data[1:20, ] %&gt;% 
-  select(reef_id, date, substrate_code, total) %&gt;%
+  select(reef_id, date, substrate_code, segment_code, total) %&gt;%
   filter(substrate_code == &quot;HC&quot;)</code></pre>
 <div class="kable-table">
 
@@ -2904,6 +2904,9 @@ date
 </th>
 <th style="text-align:left;">
 substrate_code
+</th>
+<th style="text-align:left;">
+segment_code
 </th>
 <th style="text-align:right;">
 total
@@ -2921,6 +2924,9 @@ total
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 7
 </td>
@@ -2934,6 +2940,9 @@ HC
 </td>
 <td style="text-align:left;">
 HC
+</td>
+<td style="text-align:left;">
+S1
 </td>
 <td style="text-align:right;">
 5
@@ -2949,6 +2958,9 @@ HC
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 8
 </td>
@@ -2958,7 +2970,7 @@ HC
 </div>
 <pre class="r"><code># use mutate to create a new column - via calucation
 data[1:20, ] %&gt;% 
-  select(reef_id, date, substrate_code, total) %&gt;%
+  select(reef_id, date, substrate_code, segment_code, total) %&gt;%
   filter(substrate_code == &quot;HC&quot;) %&gt;%
   mutate(sum_points = sum(total))</code></pre>
 <div class="kable-table">
@@ -2974,6 +2986,9 @@ date
 </th>
 <th style="text-align:left;">
 substrate_code
+</th>
+<th style="text-align:left;">
+segment_code
 </th>
 <th style="text-align:right;">
 total
@@ -2994,6 +3009,9 @@ sum_points
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 7
 </td>
@@ -3010,6 +3028,9 @@ HC
 </td>
 <td style="text-align:left;">
 HC
+</td>
+<td style="text-align:left;">
+S1
 </td>
 <td style="text-align:right;">
 5
@@ -3028,6 +3049,9 @@ HC
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 8
 </td>
@@ -3040,7 +3064,7 @@ HC
 </div>
 <pre class="r"><code># use mutate to create a new column - via adding information
 data[1:20, ] %&gt;% 
-  select(reef_id, date, substrate_code, total) %&gt;%
+  select(reef_id, date, substrate_code, segment_code, total) %&gt;%
   filter(substrate_code == &quot;HC&quot;) %&gt;%
   mutate(sum_points = sum(total),
          data_source = &quot;Reef Check&quot;)</code></pre>
@@ -3057,6 +3081,9 @@ date
 </th>
 <th style="text-align:left;">
 substrate_code
+</th>
+<th style="text-align:left;">
+segment_code
 </th>
 <th style="text-align:right;">
 total
@@ -3080,6 +3107,9 @@ data_source
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 7
 </td>
@@ -3099,6 +3129,9 @@ Reef Check
 </td>
 <td style="text-align:left;">
 HC
+</td>
+<td style="text-align:left;">
+S1
 </td>
 <td style="text-align:right;">
 5
@@ -3120,6 +3153,9 @@ Reef Check
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 8
 </td>
@@ -3133,10 +3169,10 @@ Reef Check
 </tbody>
 </table>
 </div>
-<pre class="r"><code># use arrange to change the order of how variables appear in the column
+<pre class="r"><code># use arrange to change the order of how variables appear in the column (ie alphabetical or numerical order)
 data[1:20, ] %&gt;% 
-  select(reef_id, date, substrate_code, total) %&gt;%
-  arrange(substrate_code)</code></pre>
+  select(reef_id, date, substrate_code, segment_code, total) %&gt;%
+  arrange(substrate_code, total)</code></pre>
 <div class="kable-table">
 
 <table>
@@ -3150,6 +3186,9 @@ date
 </th>
 <th style="text-align:left;">
 substrate_code
+</th>
+<th style="text-align:left;">
+segment_code
 </th>
 <th style="text-align:right;">
 total
@@ -3167,19 +3206,8 @@ total
 <td style="text-align:left;">
 HC
 </td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
 <td style="text-align:left;">
-16.22.16W.15.14.21N
-</td>
-<td style="text-align:left;">
-04-Mar-06
-</td>
-<td style="text-align:left;">
-HC
+S1
 </td>
 <td style="text-align:right;">
 5
@@ -3195,6 +3223,26 @@ HC
 <td style="text-align:left;">
 HC
 </td>
+<td style="text-align:left;">
+S2
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16.22.16W.15.14.21N
+</td>
+<td style="text-align:left;">
+04-Mar-06
+</td>
+<td style="text-align:left;">
+HC
+</td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 8
 </td>
@@ -3209,6 +3257,9 @@ HC
 <td style="text-align:left;">
 NI
 </td>
+<td style="text-align:left;">
+S1
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3223,6 +3274,9 @@ NI
 <td style="text-align:left;">
 NI
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3237,6 +3291,9 @@ NI
 <td style="text-align:left;">
 NI
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3251,6 +3308,9 @@ NI
 <td style="text-align:left;">
 OT
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3265,6 +3325,9 @@ OT
 <td style="text-align:left;">
 OT
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3278,6 +3341,9 @@ OT
 </td>
 <td style="text-align:left;">
 OT
+</td>
+<td style="text-align:left;">
+S1
 </td>
 <td style="text-align:right;">
 0
@@ -3293,8 +3359,11 @@ OT
 <td style="text-align:left;">
 RB
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
-15
+1
 </td>
 </tr>
 <tr>
@@ -3306,6 +3375,9 @@ RB
 </td>
 <td style="text-align:left;">
 RB
+</td>
+<td style="text-align:left;">
+S2
 </td>
 <td style="text-align:right;">
 14
@@ -3321,8 +3393,11 @@ RB
 <td style="text-align:left;">
 RB
 </td>
+<td style="text-align:left;">
+S1
+</td>
 <td style="text-align:right;">
-1
+15
 </td>
 </tr>
 <tr>
@@ -3335,19 +3410,8 @@ RB
 <td style="text-align:left;">
 RC
 </td>
-<td style="text-align:right;">
-30
-</td>
-</tr>
-<tr>
 <td style="text-align:left;">
-16.22.16W.15.14.21N
-</td>
-<td style="text-align:left;">
-04-Mar-06
-</td>
-<td style="text-align:left;">
-RC
+S2
 </td>
 <td style="text-align:right;">
 11
@@ -3363,6 +3427,9 @@ RC
 <td style="text-align:left;">
 RC
 </td>
+<td style="text-align:left;">
+S1
+</td>
 <td style="text-align:right;">
 14
 </td>
@@ -3375,7 +3442,27 @@ RC
 04-Mar-06
 </td>
 <td style="text-align:left;">
+RC
+</td>
+<td style="text-align:left;">
+S3
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16.22.16W.15.14.21N
+</td>
+<td style="text-align:left;">
+04-Mar-06
+</td>
+<td style="text-align:left;">
 RK
+</td>
+<td style="text-align:left;">
+S3
 </td>
 <td style="text-align:right;">
 0
@@ -3391,6 +3478,9 @@ RK
 <td style="text-align:left;">
 RK
 </td>
+<td style="text-align:left;">
+S2
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3404,6 +3494,9 @@ RK
 </td>
 <td style="text-align:left;">
 RK
+</td>
+<td style="text-align:left;">
+S1
 </td>
 <td style="text-align:right;">
 0
@@ -3419,6 +3512,9 @@ RK
 <td style="text-align:left;">
 SC
 </td>
+<td style="text-align:left;">
+S3
+</td>
 <td style="text-align:right;">
 0
 </td>
@@ -3432,6 +3528,9 @@ SC
 </td>
 <td style="text-align:left;">
 SC
+</td>
+<td style="text-align:left;">
+S2
 </td>
 <td style="text-align:right;">
 0
@@ -3499,7 +3598,19 @@ data_site_average &lt;- data_by_survey %&gt;%
 dupes &lt;- data_site_average %&gt;%
   janitor::get_dupes(reef_id, date)</code></pre>
 <pre><code>## No duplicate combinations found of: reef_id, date</code></pre>
-<pre class="r"><code>  # should get this message in console: No duplicate combinations found of: reef_id, date</code></pre>
+<pre class="r"><code>  # should get this message in console: No duplicate combinations found of: reef_id, date
+
+
+# Example of lots of duplicates:
+lots_dupes &lt;- data_by_survey %&gt;%
+  group_by(reef_id, date) %&gt;%
+  mutate(coral = round(mean(perc_survey), 2),
+         coral_std = round(sd(perc_survey), 2),
+         depth_m = round(mean(depth), 2),
+         n_surveys= length(unique(perc_survey))) %&gt;%
+  ungroup() 
+dupes2 &lt;- lots_dupes %&gt;%
+  janitor::get_dupes(reef_id, date)</code></pre>
 <hr />
 </div>
 </div>
