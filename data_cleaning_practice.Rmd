@@ -62,7 +62,7 @@ data <- readr::read_csv("https://raw.githubusercontent.com/Lmudge13/sample_code/
 </br></br>
 
 __Review data structure & clean column names__
-```{r data_review, eval=FALSE}
+```{r data_review}
 # review variables and class types
 str(data)
 
